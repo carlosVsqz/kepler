@@ -20,7 +20,7 @@
 name: Build and deploy JAR app to Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: tes-catalyst-escod    # set this to the name of your Azure Web App
+  AZURE_WEBAPP_NAME: kepler-test    # set this to the name of your Azure Web App
   JAVA_VERSION: 17
   DISTRIBUTION: 'temurin'
 
