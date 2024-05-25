@@ -1,6 +1,7 @@
 package com.escod.kepler.security;
 
 import com.escod.kepler.entity.User;
+import com.escod.kepler.security.rest.roles.AnonymousRestRole;
 import io.jmix.securitydata.user.AbstractDatabaseUserRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +27,10 @@ public class DatabaseUserRepository extends AbstractDatabaseUserRepository<User>
     }
 
     @Override
-    protected void initAnonymousUser(final User anonymousUser) {
+    protected void initAnonymousUser(User anonymousUser) {
+        Collection<GrantedAuthority> authorities = getGrantedAuthoritiesBuilder()
+            .addResourceRole(AnonymousRestRole.CODE)
+            .build();
+        anonymousUser.setAuthorities(authorities);
     }
 }
