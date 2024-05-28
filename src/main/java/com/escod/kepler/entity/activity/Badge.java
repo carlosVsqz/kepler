@@ -56,6 +56,9 @@ public class Badge {
   @OneToMany(mappedBy = "badge")
   private List<ActivityDetail> activityDetails;
 
+  @OneToMany(mappedBy = "badge")
+  private List<BadgeParticipant> badgeParticipants;
+
   @Lob
   @Column(name = "description")
   private String description;
@@ -70,6 +73,14 @@ public class Badge {
 
   @Column(name = "is_active")
   private Boolean isActive;
+
+  public List<BadgeParticipant> getBadgeParticipants() {
+    return badgeParticipants;
+  }
+
+  public void setBadgeParticipants(List<BadgeParticipant> badgeParticipants) {
+    this.badgeParticipants = badgeParticipants;
+  }
 
   public List<ActivityDetail> getActivityDetails() {
     return activityDetails;

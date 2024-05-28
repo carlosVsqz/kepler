@@ -1,6 +1,8 @@
 package com.escod.kepler.entity;
 
 import com.escod.kepler.entity.activity.ActivityDetail;
+import com.escod.kepler.entity.activity.BadgeParticipant;
+import com.escod.kepler.entity.activity.Participant;
 import io.jmix.core.HasTimeZone;
 import io.jmix.core.annotation.Secret;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
@@ -38,6 +40,12 @@ public class User implements JmixUserDetails, HasTimeZone {
     protected String username;
 
     @OneToMany(mappedBy = "user")
+    private List<Participant> participants;
+
+    @OneToMany(mappedBy = "user")
+    private List<BadgeParticipant> badgeParticipants;
+
+    @OneToMany(mappedBy = "user")
     private List<ActivityDetail> activityDetails;
 
     @Secret
@@ -63,6 +71,22 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public List<BadgeParticipant> getBadgeParticipants() {
+        return badgeParticipants;
+    }
+
+    public void setBadgeParticipants(List<BadgeParticipant> badgeParticipants) {
+        this.badgeParticipants = badgeParticipants;
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
 
     public List<ActivityDetail> getActivityDetails() {
         return activityDetails;

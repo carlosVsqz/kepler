@@ -56,6 +56,9 @@ public class Activity {
   @Column(name = "title", nullable = false, length = 256)
   private String title;
 
+  @OneToMany(mappedBy = "activity")
+  private List<Participant> participants;
+
   @Size(max = 256)
   @Column(name = "activity_logo", length = 1024)
   private FileRef activityLogo;
@@ -94,6 +97,25 @@ public class Activity {
 
   @OneToMany(mappedBy = "activity")
   private List<ActivityDetail> details;
+
+  @OneToMany(mappedBy = "activity")
+  private List<BadgeParticipant> badgeParticipants;
+
+  public List<BadgeParticipant> getBadgeParticipants() {
+    return badgeParticipants;
+  }
+
+  public void setBadgeParticipants(List<BadgeParticipant> badgeParticipants) {
+    this.badgeParticipants = badgeParticipants;
+  }
+
+  public List<Participant> getParticipants() {
+    return participants;
+  }
+
+  public void setParticipants(List<Participant> participants) {
+    this.participants = participants;
+  }
 
   public List<ActivityDetail> getDetails() {
     return details;

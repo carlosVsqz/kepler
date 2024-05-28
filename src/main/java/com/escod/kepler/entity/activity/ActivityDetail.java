@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
@@ -27,6 +28,9 @@ public class ActivityDetail {
   @NotNull
   @Column(name = "title", nullable = false)
   private String title;
+
+  @OneToMany(mappedBy = "activityDetail")
+  private List<ParticipantDetail> participantDetails;
 
   @NotNull
   @Lob
@@ -67,9 +71,18 @@ public class ActivityDetail {
   @JoinColumn(name = "BADGE_ID")
   @ManyToOne(fetch = FetchType.LAZY)
   private Badge badge;
+
   @JoinColumn(name = "USER_ID")
   @ManyToOne(fetch = FetchType.LAZY)
   private User user;
+
+  public List<ParticipantDetail> getParticipantDetails() {
+    return participantDetails;
+  }
+
+  public void setParticipantDetails(List<ParticipantDetail> participantDetails) {
+    this.participantDetails = participantDetails;
+  }
 
   public User getUser() {
     return user;
