@@ -1,5 +1,8 @@
 package com.escod.kepler.entity;
 
+import com.escod.kepler.entity.activity.ActivityDetail;
+import com.escod.kepler.entity.activity.BadgeParticipant;
+import com.escod.kepler.entity.activity.Participant;
 import io.jmix.core.HasTimeZone;
 import io.jmix.core.annotation.Secret;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
@@ -8,22 +11,24 @@ import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import io.jmix.security.authentication.JmixUserDetails;
-import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
 @Entity
 @Table(name = "USER_", indexes = {
-        @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true)
+    @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true)
 })
 public class User implements JmixUserDetails, HasTimeZone {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
     private UUID id;
 
@@ -33,6 +38,15 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     @Column(name = "USERNAME", nullable = false)
     protected String username;
+
+    @OneToMany(mappedBy = "user")
+    private List<Participant> participants;
+
+    @OneToMany(mappedBy = "user")
+    private List<BadgeParticipant> badgeParticipants;
+
+    @OneToMany(mappedBy = "user")
+    private List<ActivityDetail> activityDetails;
 
     @Secret
     @SystemLevel
@@ -57,6 +71,30 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public List<BadgeParticipant> getBadgeParticipants() {
+        return badgeParticipants;
+    }
+
+    public void setBadgeParticipants(List<BadgeParticipant> badgeParticipants) {
+        this.badgeParticipants = badgeParticipants;
+    }
+
+    public List<Participant> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Participant> participants) {
+        this.participants = participants;
+    }
+
+    public List<ActivityDetail> getActivityDetails() {
+        return activityDetails;
+    }
+
+    public void setActivityDetails(List<ActivityDetail> activityDetails) {
+        this.activityDetails = activityDetails;
+    }
 
     public UUID getId() {
         return id;

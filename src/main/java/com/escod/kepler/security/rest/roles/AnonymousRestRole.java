@@ -1,6 +1,6 @@
 package com.escod.kepler.security.rest.roles;
 
-import com.escod.kepler.entity.cms.CMSSite;
+import com.escod.kepler.entity.activity.Activity;
 import io.jmix.security.model.EntityAttributePolicyAction;
 import io.jmix.security.model.EntityPolicyAction;
 import io.jmix.security.role.annotation.EntityAttributePolicy;
@@ -12,10 +12,10 @@ public interface AnonymousRestRole {
 
   String CODE = "anonymous-rest-role";
 
-  @EntityAttributePolicy(entityClass = CMSSite.class,
+  @EntityAttributePolicy(entityClass = Activity.class,
       attributes = "*",
-      action = EntityAttributePolicyAction.MODIFY)
-  @EntityPolicy(entityClass = CMSSite.class,
+      action = EntityAttributePolicyAction.VIEW)
+  @EntityPolicy(entityClass = Activity.class,
       actions = {EntityPolicyAction.READ, EntityPolicyAction.UPDATE})
-  void cmsSite();
+  void activity();
 }
