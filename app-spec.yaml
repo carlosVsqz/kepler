@@ -1,0 +1,7 @@
+name: keplerDO
+services:
+  - name: web
+    git:
+      repo_clone_url: https://github.com/carlosVsqz/kepler.git
+      branch: release/do-app
+    dockerfile_path: docker/basic-initialization/Dockerfile
