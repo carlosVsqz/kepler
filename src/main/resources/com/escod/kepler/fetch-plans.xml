@@ -1,0 +1,9 @@
+<fetchPlans xmlns="http://jmix.io/schema/core/fetch-plans">
+  <fetchPlan class="com.escod.kepler.entity.activity.Activity"
+             extends="_base"
+             name="activity-name-details">
+    <property name="categoryActivityDetails" fetchPlan="_base" fetch="AUTO">
+      <property name="categoryActivity" fetch="AUTO" fetchPlan="_base"/>
+    </property>
+  </fetchPlan>
+</fetchPlans>

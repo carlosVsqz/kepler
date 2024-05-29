@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://activityListView.title"
+      focusComponent="activitiesDataGrid">
+  <data>
+    <collection id="activitiesDc"
+                class="com.escod.kepler.entity.activity.Activity">
+      <fetchPlan extends="_base">
+        <property name="categoryActivityDetails" fetch="AUTO" fetchPlan="_base">
+          <property name="categoryActivity" fetch="AUTO" fetchPlan="_base"/>
+        </property>
+        <property name="details" fetch="AUTO" fetchPlan="_base">
+          <property name="badge" fetch="AUTO" fetchPlan="_base"/>
+        </property>
+      </fetchPlan>
+      <loader id="activitiesDl" readOnly="true">
+        <query>
+          <![CDATA[select e from Activity e]]>
+        </query>
+      </loader>
+    </collection>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+    <urlQueryParameters>
+      <genericFilter component="genericFilter"/>
+      <pagination component="pagination"/>
+    </urlQueryParameters>
+  </facets>
+  <actions>
+    <action id="selectAction" type="lookup_select"/>
+    <action id="discardAction" type="lookup_discard"/>
+  </actions>
+  <layout>
+    <genericFilter id="genericFilter"
+                   dataLoader="activitiesDl">
+      <properties include=".*"/>
+    </genericFilter>
+    <hbox id="buttonsPanel" classNames="buttons-panel">
+      <button id="createBtn" action="activitiesDataGrid.create"/>
+      <button id="editBtn" action="activitiesDataGrid.edit"/>
+      <button id="removeBtn" action="activitiesDataGrid.remove"/>
+      <simplePagination id="pagination" dataLoader="activitiesDl"/>
+    </hbox>
+    <dataGrid id="activitiesDataGrid"
+              width="100%"
+              minHeight="20em"
+              dataContainer="activitiesDc"
+              columnReorderingAllowed="true">
+      <actions>
+        <action id="create" type="list_create"/>
+        <action id="edit" type="list_edit"/>
+        <action id="remove" type="list_remove"/>
+      </actions>
+      <columns resizable="true">
+        <column property="title"/>
+        <column property="activityLogo"/>
+        <column property="description"/>
+        <column property="rules"/>
+        <column property="instructions"/>
+        <column property="startDate"/>
+        <column property="endDate"/>
+        <column property="isActive"/>
+        <column property="status"/>
+      </columns>
+    </dataGrid>
+    <hbox id="lookupActions" visible="false">
+      <button id="selectBtn" action="selectAction"/>
+      <button id="discardBtn" action="discardAction"/>
+    </hbox>
+  </layout>
+</view>

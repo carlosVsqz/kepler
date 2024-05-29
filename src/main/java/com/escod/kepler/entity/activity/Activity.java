@@ -7,7 +7,6 @@ import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -51,15 +50,16 @@ public class Activity {
   @Column(name = "DELETED_DATE")
   private OffsetDateTime deletedDate;
 
-  @Size(max = 256)
   @NotNull
   @Column(name = "title", nullable = false, length = 256)
   private String title;
 
   @OneToMany(mappedBy = "activity")
+  private List<CategoryActivityDetail> categoryActivityDetails;
+
+  @OneToMany(mappedBy = "activity")
   private List<Participant> participants;
 
-  @Size(max = 256)
   @Column(name = "activity_logo", length = 1024)
   private FileRef activityLogo;
 
@@ -90,7 +90,6 @@ public class Activity {
   @Column(name = "is_active", nullable = false)
   private Boolean isActive = false;
 
-  @Size(max = 32)
   @NotNull
   @Column(name = "status", nullable = false, length = 32)
   private String status;
@@ -100,6 +99,14 @@ public class Activity {
 
   @OneToMany(mappedBy = "activity")
   private List<BadgeParticipant> badgeParticipants;
+
+  public List<CategoryActivityDetail> getCategoryActivityDetails() {
+    return categoryActivityDetails;
+  }
+
+  public void setCategoryActivityDetails(List<CategoryActivityDetail> categoryActivityDetails) {
+    this.categoryActivityDetails = categoryActivityDetails;
+  }
 
   public List<BadgeParticipant> getBadgeParticipants() {
     return badgeParticipants;

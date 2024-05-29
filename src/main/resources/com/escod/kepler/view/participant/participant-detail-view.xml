@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://participantDetailView.title"
+      focusComponent="form">
+  <data>
+    <instance id="participantDc"
+              class="com.escod.kepler.entity.activity.Participant">
+      <fetchPlan extends="_base">
+        <property name="participantDetails" fetch="AUTO" fetchPlan="_base">
+          <property name="activityDetail" fetch="AUTO" fetchPlan="_base">
+            <property name="activity" fetch="AUTO" fetchPlan="_base"/>
+          </property>
+        </property>
+        <property name="user" fetch="AUTO" fetchPlan="_base"/>
+      </fetchPlan>
+      <loader/>
+    </instance>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+  </facets>
+  <actions>
+    <action id="saveAction" type="detail_saveClose"/>
+    <action id="closeAction" type="detail_close"/>
+  </actions>
+  <layout>
+    <formLayout id="form" dataContainer="participantDc">
+      <datePicker id="dateField" property="date"/>
+      <entityPicker id="userField" property="user">
+        <actions>
+          <action id="entityLookup" type="entity_lookup"/>
+          <action id="entityClear" type="entity_clear"/>
+        </actions>
+      </entityPicker>
+    </formLayout>
+    <hbox id="detailActions">
+      <button id="saveAndCloseBtn" action="saveAction"/>
+      <button id="closeBtn" action="closeAction"/>
+    </hbox>
+  </layout>
+</view>

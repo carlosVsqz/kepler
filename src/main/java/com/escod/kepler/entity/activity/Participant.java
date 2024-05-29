@@ -6,6 +6,7 @@ import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -56,6 +57,10 @@ public class Participant {
   @ManyToOne(fetch = FetchType.LAZY)
   private Activity activity;
 
+  @Column(name = "ACTIVE", nullable = false)
+  @NotNull
+  private Boolean active = false;
+
   @Column(name = "DATE_")
   @Temporal(TemporalType.DATE)
   private Date date;
@@ -66,6 +71,14 @@ public class Participant {
   @JoinColumn(name = "USER_ID")
   @ManyToOne(fetch = FetchType.LAZY)
   private User user;
+
+  public Boolean getActive() {
+    return active;
+  }
+
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
 
   public List<ParticipantDetail> getParticipantDetails() {
     return participantDetails;

@@ -49,7 +49,6 @@ public class Badge {
   @Column(name = "DELETED_DATE")
   private OffsetDateTime deletedDate;
 
-  @Size(max = 256)
   @Column(name = "name", length = 256)
   private String name;
 
@@ -63,7 +62,6 @@ public class Badge {
   @Column(name = "description")
   private String description;
 
-  @Size(max = 1024)
   @Column(name = "image_url", length = 1024)
   private FileRef image;
 
