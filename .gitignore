@@ -34,3 +34,6 @@ webpack.generated.js
 
 .idea/
 .jmix/
+
+### env file ###
+.env

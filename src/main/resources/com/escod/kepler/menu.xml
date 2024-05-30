@@ -3,6 +3,11 @@
 
     <menu id="application" title="msg://com.escod.kepler/menu.application.title" opened="true">
         <item view="User.list" title="msg://com.escod.kepler.view.user/UserListView.title"/>
+      <item view="Activity.list" title="msg://com.escod.kepler.view.activity/activityListView.title"/>
+      <item view="Badge.list" title="msg://com.escod.kepler.view.badge/badgeListView.title"/>
+      <item view="CategoryActivity.list"
+            title="msg://com.escod.kepler.view.categoryactivity/categoryActivityListView.title"/>
+      <item view="Participant.list" title="msg://com.escod.kepler.view.participant/participantListView.title"/>
     </menu>
 
 </menu-config>

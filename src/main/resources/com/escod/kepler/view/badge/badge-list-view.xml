@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://badgeListView.title"
+      focusComponent="badgesDataGrid">
+  <data>
+    <collection id="badgesDc"
+                class="com.escod.kepler.entity.activity.Badge">
+      <fetchPlan extends="_base"/>
+      <loader id="badgesDl" readOnly="true">
+        <query>
+          <![CDATA[select e from Badge e]]>
+        </query>
+      </loader>
+    </collection>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+    <urlQueryParameters>
+      <genericFilter component="genericFilter"/>
+      <pagination component="pagination"/>
+    </urlQueryParameters>
+  </facets>
+  <actions>
+    <action id="selectAction" type="lookup_select"/>
+    <action id="discardAction" type="lookup_discard"/>
+  </actions>
+  <layout>
+    <genericFilter id="genericFilter"
+                   dataLoader="badgesDl">
+      <properties include=".*"/>
+    </genericFilter>
+    <hbox id="buttonsPanel" classNames="buttons-panel">
+      <button id="createBtn" action="badgesDataGrid.create"/>
+      <button id="editBtn" action="badgesDataGrid.edit"/>
+      <button id="removeBtn" action="badgesDataGrid.remove"/>
+      <simplePagination id="pagination" dataLoader="badgesDl"/>
+    </hbox>
+    <dataGrid id="badgesDataGrid"
+              width="100%"
+              minHeight="20em"
+              dataContainer="badgesDc"
+              columnReorderingAllowed="true">
+      <actions>
+        <action id="create" type="list_create"/>
+        <action id="edit" type="list_edit"/>
+        <action id="remove" type="list_remove"/>
+      </actions>
+      <columns resizable="true">
+        <column property="name"/>
+        <column property="description"/>
+        <column property="image"/>
+        <column property="criteria"/>
+        <column property="isActive"/>
+      </columns>
+    </dataGrid>
+    <hbox id="lookupActions" visible="false">
+      <button id="selectBtn" action="selectAction"/>
+      <button id="discardBtn" action="discardAction"/>
+    </hbox>
+  </layout>
+</view>
