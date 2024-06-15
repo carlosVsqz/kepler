@@ -15,6 +15,14 @@
       </fetchPlan>
       <loader/>
     </instance>
+    <collection id="categoryActivitiesDc" class="com.escod.kepler.entity.activity.CategoryActivity">
+      <fetchPlan extends="_base"/>
+      <loader id="categoryActivitiesDl">
+        <query>
+          <![CDATA[select e from CategoryActivity e where e.active = true]]>
+        </query>
+      </loader>
+    </collection>
   </data>
   <facets>
     <dataLoadCoordinator auto="true"/>
@@ -34,6 +42,21 @@
       <datePicker id="endDateField" property="endDate"/>
       <checkbox id="isActiveField" property="isActive"/>
       <textField id="statusField" property="status"/>
+      <multiSelectComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"
+                           metaClass="CategoryActivity" label="Categorias"/>
+<!--      <entityComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"-->
+<!--                      metaClass="CategoryActivity">-->
+<!--        <actions>-->
+<!--          <action id="entityClear" type="entity_clear"/>-->
+<!--&lt;!&ndash;          <action id="entityLookup" type="entity_lookup"/>&ndash;&gt;-->
+<!--          <action id="entityOpen" type="entity_open"/>-->
+<!--&lt;!&ndash;          <action id="entityOpenComposition" type="entity_openComposition"/>&ndash;&gt;-->
+<!--&lt;!&ndash;          <action id="valueClear" type="value_clear"/>&ndash;&gt;-->
+<!--        </actions>-->
+<!--      </entityComboBox>-->
+
+
+
       <vbox>
         <fileStorageUploadField dataContainer="activityDc" property="activityLogo"
                                 clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
