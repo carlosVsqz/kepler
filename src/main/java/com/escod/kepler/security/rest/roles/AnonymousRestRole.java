@@ -56,6 +56,6 @@ public interface AnonymousRestRole {
   @EntityPolicy(entityClass = Participant.class, actions = {EntityPolicyAction.CREATE, EntityPolicyAction.UPDATE, EntityPolicyAction.READ})
   void participantCreate();
 
-  @SpecificPolicy(resources = "rest.fileDownload.enabled")
+  @SpecificPolicy(resources = {"rest.fileDownload.enabled", "rest.enabled"})
   void readFile();
 }
