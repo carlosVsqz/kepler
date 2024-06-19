@@ -1,6 +1,7 @@
 package com.escod.kepler.view.activity;
 
 import com.escod.kepler.entity.activity.Activity;
+import com.escod.kepler.entity.activity.ActivityDetail;
 import com.escod.kepler.entity.activity.CategoryActivity;
 import com.escod.kepler.entity.activity.CategoryActivityDetail;
 import com.escod.kepler.view.main.MainView;
@@ -8,11 +9,12 @@ import com.vaadin.flow.router.Route;
 import io.jmix.core.DataManager;
 import io.jmix.core.EntityStates;
 import io.jmix.flowui.component.multiselectcombobox.JmixMultiSelectComboBox;
-import io.jmix.flowui.model.CollectionLoader;
+import io.jmix.flowui.component.multiselectcomboboxpicker.JmixMultiSelectComboBoxPicker;
 import io.jmix.flowui.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Set;
 
 @Route(value = "activities/:id", layout = MainView.class)
 @ViewController("Activity.detail")
@@ -30,7 +32,7 @@ public class ActivityDetailView extends StandardDetailView<Activity> {
   private JmixMultiSelectComboBox<CategoryActivity> categoryActivitiesComboBox;
 
   @ViewComponent
-  private CollectionLoader<CategoryActivity> categoryActivitiesDl;
+  private JmixMultiSelectComboBoxPicker<ActivityDetail> activityDetailsComboBox;
 
   @Subscribe
   public void onReady(final ReadyEvent event) {
@@ -41,7 +43,9 @@ public class ActivityDetailView extends StandardDetailView<Activity> {
       var item = getEditedEntity();
 
       List<CategoryActivity> associatedCategories = getAssociatedCategories(item);
+      List<ActivityDetail> details = getEditedEntity().getDetails();
       categoryActivitiesComboBox.select(associatedCategories);
+      activityDetailsComboBox.select(details);
     }
   }
 
@@ -49,18 +53,13 @@ public class ActivityDetailView extends StandardDetailView<Activity> {
   public void onAfterSave(final AfterSaveEvent event) {
 
     var activity = getEditedEntity();
-    // remove old details
-//    var oldDetail = getAssociatedCategories(activity);
 
-//    if (oldDetail!= null){
-//      dataManager.remove(oldDetail);
-//    }
     List<CategoryActivityDetail> categoryActivityDetails = dataManager.load(CategoryActivityDetail.class)
         .query("select c from CategoryActivityDetail c where c.activity = :activity")
         .parameter("activity", activity)
         .list();
 
-    if (!categoryActivityDetails.isEmpty()){
+    if (!categoryActivityDetails.isEmpty()) {
       dataManager.remove(categoryActivityDetails);
     }
 
@@ -74,6 +73,29 @@ public class ActivityDetailView extends StandardDetailView<Activity> {
         detail.setActivity(activity);
         detail.setCategoryActivity(categoryActivity);
         dataManager.save(detail);
+      }
+    }
+
+  }
+
+  @Subscribe
+  public void onBeforeSave(final BeforeSaveEvent event) {
+
+    var activity = getEditedEntity();
+    List<ActivityDetail> details = activity.getDetails();
+
+    if (details != null && !details.isEmpty()) {
+      for (ActivityDetail activityDetail : details) {
+        activityDetail.setActivity(null);
+        dataManager.save(activityDetail);
+      }
+    }
+
+    Set<ActivityDetail> newDetails = activityDetailsComboBox.getSelectedItems();
+
+    if (newDetails != null && !newDetails.isEmpty()) {
+      for (ActivityDetail activityDetail : newDetails) {
+        activityDetail.setActivity(activity);
       }
     }
   }

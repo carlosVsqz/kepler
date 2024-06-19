@@ -5,5 +5,6 @@
     <property name="categoryActivityDetails" fetchPlan="_base" fetch="AUTO">
       <property name="categoryActivity" fetch="AUTO" fetchPlan="_base"/>
     </property>
+    <property name="details" fetchPlan="_base" fetch="AUTO"/>
   </fetchPlan>
 </fetchPlans>

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://jmix.io/schema/flowui/menu">
 
-    <menu id="application" title="msg://com.escod.kepler/menu.application.title" opened="true">
-        <item view="User.list" title="msg://com.escod.kepler.view.user/UserListView.title"/>
-      <item view="Activity.list" title="msg://com.escod.kepler.view.activity/activityListView.title"/>
-      <item view="Badge.list" title="msg://com.escod.kepler.view.badge/badgeListView.title"/>
-      <item view="CategoryActivity.list"
-            title="msg://com.escod.kepler.view.categoryactivity/categoryActivityListView.title"/>
-      <item view="Participant.list" title="msg://com.escod.kepler.view.participant/participantListView.title"/>
-    </menu>
+  <item view="User.list" title="msg://com.escod.kepler.view.user/UserListView.title" icon="vaadin:user"/>
+  <item view="Badge.list" title="msg://com.escod.kepler.view.badge/badgeListView.title" icon="vaadin:medal"/>
+  <item view="Participant.list" title="msg://com.escod.kepler.view.participant/participantListView.title" icon="vaadin:users"/>
+  <menu id="events" title="msg://com.escod.kepler/menu.events.title" opened="true" icon="lumo:calendar">
+    <item view="CategoryActivity.list"
+          title="msg://com.escod.kepler.view.categoryactivity/categoryActivityListView.title"/>
+    <item view="Activity.list" title="msg://com.escod.kepler.view.activity/activityListView.title"/>
+    <item view="ActivityDetail.list" title="msg://com.escod.kepler.view.activitydetail/activityDetailListView.title"/>
+  </menu>
+  <menu id="application" title="msg://com.escod.kepler/menu.application.title" opened="true">
+  </menu>
 
 </menu-config>

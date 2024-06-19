@@ -4,6 +4,7 @@ import io.jmix.core.FileRef;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -50,6 +51,7 @@ public class Activity {
   @Column(name = "DELETED_DATE")
   private OffsetDateTime deletedDate;
 
+  @InstanceName
   @NotNull
   @Column(name = "title", nullable = false, length = 256)
   private String title;

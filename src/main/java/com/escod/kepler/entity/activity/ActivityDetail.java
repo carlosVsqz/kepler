@@ -2,6 +2,7 @@ package com.escod.kepler.entity.activity;
 
 import com.escod.kepler.entity.User;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ public class ActivityDetail {
   @Id
   private UUID id;
 
+  @InstanceName
   @Size(max = 255)
   @NotNull
   @Column(name = "title", nullable = false)

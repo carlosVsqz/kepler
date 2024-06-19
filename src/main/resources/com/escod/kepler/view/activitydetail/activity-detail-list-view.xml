@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <view xmlns="http://jmix.io/schema/flowui/view"
       xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
-      title="msg://activityListView.title"
-      focusComponent="activitiesDataGrid">
+      title="msg://activityDetailListView.title"
+      focusComponent="activityDetailsDataGrid">
   <data>
-    <collection id="activitiesDc"
-                class="com.escod.kepler.entity.activity.Activity">
+    <collection id="activityDetailsDc"
+                class="com.escod.kepler.entity.activity.ActivityDetail">
       <fetchPlan extends="_base">
-        <property name="categoryActivityDetails" fetch="AUTO" fetchPlan="_base">
-          <property name="categoryActivity" fetch="AUTO" fetchPlan="_base"/>
-        </property>
-        <property name="details" fetch="AUTO" fetchPlan="_base">
-          <property name="badge" fetch="AUTO" fetchPlan="_base"/>
-        </property>
+        <property name="activity" fetchPlan="_base"/>
+        <property name="badge" fetchPlan="_base"/>
       </fetchPlan>
-      <loader id="activitiesDl" readOnly="true">
+      <loader id="activityDetailsDl" readOnly="true">
         <query>
-          <![CDATA[select e from Activity e]]>
+          <![CDATA[select e from ActivityDetail e]]>
         </query>
       </loader>
     </collection>
@@ -34,19 +30,19 @@
   </actions>
   <layout>
     <genericFilter id="genericFilter"
-                   dataLoader="activitiesDl">
+                   dataLoader="activityDetailsDl">
       <properties include=".*"/>
     </genericFilter>
     <hbox id="buttonsPanel" classNames="buttons-panel">
-      <button id="createBtn" action="activitiesDataGrid.create"/>
-      <button id="editBtn" action="activitiesDataGrid.edit"/>
-      <button id="removeBtn" action="activitiesDataGrid.remove"/>
-      <simplePagination id="pagination" dataLoader="activitiesDl"/>
+      <button id="createBtn" action="activityDetailsDataGrid.create"/>
+      <button id="editBtn" action="activityDetailsDataGrid.edit"/>
+      <button id="removeBtn" action="activityDetailsDataGrid.remove"/>
+      <simplePagination id="pagination" dataLoader="activityDetailsDl"/>
     </hbox>
-    <dataGrid id="activitiesDataGrid"
+    <dataGrid id="activityDetailsDataGrid"
               width="100%"
               minHeight="20em"
-              dataContainer="activitiesDc"
+              dataContainer="activityDetailsDc"
               columnReorderingAllowed="true">
       <actions>
         <action id="create" type="list_create"/>
@@ -55,7 +51,6 @@
       </actions>
       <columns resizable="true">
         <column property="title"/>
-        <column property="activityLogo"/>
 <!--        <column property="description"/>-->
 <!--        <column property="rules"/>-->
 <!--        <column property="instructions"/>-->
@@ -63,6 +58,8 @@
         <column property="endDate"/>
         <column property="isActive"/>
         <column property="status"/>
+        <column property="activity"/>
+        <column property="badge"/>
       </columns>
     </dataGrid>
     <hbox id="lookupActions" visible="false">

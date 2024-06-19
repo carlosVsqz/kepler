@@ -23,6 +23,15 @@
         </query>
       </loader>
     </collection>
+
+    <collection id="activityDetailsDc" class="com.escod.kepler.entity.activity.ActivityDetail">
+      <fetchPlan extends="_base"/>
+      <loader id="activityDetailsDl">
+        <query>
+          <![CDATA[select e from ActivityDetail e]]>
+        </query>
+      </loader>
+    </collection>
   </data>
   <facets>
     <dataLoadCoordinator auto="true"/>
@@ -35,12 +44,12 @@
     <formLayout id="form" dataContainer="activityDc">
       <textField id="titleField" property="title"/>
       <!--      <textField id="activityLogoField" property="activityLogo"/>-->
+      <checkbox id="isActiveField" property="isActive"/>
       <textArea id="descriptionField" height="9.5em" property="description"/>
       <textArea id="rulesField" height="9.5em" property="rules"/>
       <textArea id="instructionsField" height="9.5em" property="instructions"/>
       <datePicker id="startDateField" property="startDate"/>
       <datePicker id="endDateField" property="endDate"/>
-      <checkbox id="isActiveField" property="isActive"/>
       <textField id="statusField" property="status"/>
       <multiSelectComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"
                            metaClass="CategoryActivity" label="Categorias"/>
@@ -54,13 +63,18 @@
 <!--&lt;!&ndash;          <action id="valueClear" type="value_clear"/>&ndash;&gt;-->
 <!--        </actions>-->
 <!--      </entityComboBox>-->
-
-
+      <multiSelectComboBoxPicker id="activityDetailsComboBox" itemsContainer="activityDetailsDc"
+                           metaClass="ActivityDetail" label="Actividades">
+        <actions>
+          <action id="entity_lookup" type="entity_lookup"/>
+          <action id="entity_clear" type="entity_clear"/>
+        </actions>
+      </multiSelectComboBoxPicker>
 
       <vbox>
         <fileStorageUploadField dataContainer="activityDc" property="activityLogo"
                                 clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
-        <image id="numberField" height="10em" width="10em"
+        <image id="numberField" height="100%" width="100%"
                alternateText="msg://ActivityDetail.image.alt"
                dataContainer="activityDc" property="activityLogo"/>
       </vbox>
