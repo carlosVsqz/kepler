@@ -1,5 +1,5 @@
 plugins {
-    id 'io.jmix' version '2.2.1.1'
+    id 'io.jmix' version '2.2.3'
     id 'java'
 }
 
@@ -7,7 +7,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'com.vaadin'
 
 jmix {
-    bomVersion = '2.2.1'
+    bomVersion = '2.2.3'
 }
 
 group = 'com.escod'
@@ -46,6 +46,8 @@ dependencies {
     implementation 'io.jmix.rest:jmix-rest-starter'
     implementation 'io.jmix.authserver:jmix-authserver-starter'
     implementation 'io.jmix.translations:jmix-translations-es'
+    implementation 'gr.netmechanics.jmix:azurefs-starter:2.2.2'
+    implementation 'com.azure:azure-storage-blob:12.25.1'
 }
 
 test {
