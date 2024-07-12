@@ -20,29 +20,36 @@
     <action id="closeAction" type="detail_close"/>
   </actions>
   <layout>
-    <formLayout id="form" dataContainer="activityDetailDc">
-      <textField id="titleField" property="title"/>
-      <textArea id="descriptionField" height="9.5em" property="description"/>
-      <textArea id="rulesField" height="9.5em" property="rules"/>
-      <textArea id="instructionsField" height="9.5em" property="instructions"/>
-      <datePicker id="startDateField" property="startDate"/>
-      <datePicker id="endDateField" property="endDate"/>
-      <checkbox id="isActiveField" property="isActive"/>
-      <textField id="statusField" property="status"/>
-      <entityPicker id="activityField" property="activity">
-        <actions>
-          <action id="entityLookup" type="entity_lookup"/>
-          <action id="entityClear" type="entity_clear"/>
-        </actions>
-      </entityPicker>
-      <entityPicker id="badgeField" property="badge">
-        <actions>
-          <action id="entityLookup" type="entity_lookup"/>
-          <action id="entityClear" type="entity_clear"/>
-        </actions>
-      </entityPicker>
-    </formLayout>
-    <hbox id="detailActions">
+    <scroller height="95%" scrollBarsDirection="BOTH">
+      <vbox>
+        <formLayout id="form" dataContainer="activityDetailDc">
+          <textField id="titleField" property="title"/>
+          <checkbox id="isActiveField" property="isActive"/>
+          <textArea id="descriptionField" height="9.5em" property="description"/>
+          <textArea id="rulesField" height="9.5em" property="rules"/>
+          <textArea id="instructionsField" height="9.5em" property="instructions"/>
+          <datePicker id="startDateField" property="startDate"/>
+          <datePicker id="endDateField" property="endDate"/>
+          <textField id="statusField" property="status"/>
+          <entityPicker id="activityField" property="activity">
+            <actions>
+              <action id="entityLookup" type="entity_lookup"/>
+              <action id="entityClear" type="entity_clear"/>
+            </actions>
+          </entityPicker>
+          <entityPicker id="badgeField" property="badge">
+            <actions>
+              <action id="entityLookup" type="entity_lookup"/>
+              <action id="entityClear" type="entity_clear"/>
+            </actions>
+          </entityPicker>
+        </formLayout>
+      </vbox>
+    </scroller>
+    <hbox id="detailActions" height="5%" width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">
       <button id="saveAndCloseBtn" action="saveAction"/>
       <button id="closeBtn" action="closeAction"/>
     </hbox>

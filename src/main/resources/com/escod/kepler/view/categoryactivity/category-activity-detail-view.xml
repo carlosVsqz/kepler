@@ -17,11 +17,18 @@
     <action id="closeAction" type="detail_close"/>
   </actions>
   <layout>
-    <formLayout id="form" dataContainer="categoryActivityDc">
-      <textField id="descriptionField" property="description"/>
-      <checkbox id="activeField" property="active"/>
-    </formLayout>
-    <hbox id="detailActions">
+    <scroller height="95%" width="100%" scrollBarsDirection="BOTH">
+      <vbox>
+        <formLayout id="form" dataContainer="categoryActivityDc">
+          <textField id="descriptionField" property="description"/>
+          <checkbox id="activeField" property="active"/>
+        </formLayout>
+      </vbox>
+    </scroller>
+    <hbox id="detailActions" height="5%" width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">
       <button id="saveAndCloseBtn" action="saveAction"/>
       <button id="closeBtn" action="closeAction"/>
     </hbox>

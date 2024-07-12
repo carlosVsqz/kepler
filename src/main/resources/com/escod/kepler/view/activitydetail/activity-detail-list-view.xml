@@ -57,7 +57,7 @@
         <column property="startDate"/>
         <column property="endDate"/>
         <column property="isActive"/>
-        <column property="status"/>
+<!--        <column property="status"/>-->
         <column property="activity"/>
         <column property="badge"/>
       </columns>

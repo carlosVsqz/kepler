@@ -17,20 +17,28 @@
     <action id="closeAction" type="detail_close"/>
   </actions>
   <layout>
-    <formLayout id="form" dataContainer="badgeDc">
-      <textField id="nameField" property="name"/>
-      <textArea id="descriptionField" height="9.5em" property="description"/>
+    <scroller height="95%" scrollBarsDirection="BOTH">
       <vbox>
-        <fileStorageUploadField dataContainer="badgeDc" property="image"
-                                clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
-        <image id="numberField" height="10em" width="10em"
-               alternateText="msg://BadgeDetail.image.alt"
-               dataContainer="badgeDc" property="image"/>
+        <formLayout id="form" dataContainer="badgeDc">
+          <textField id="nameField" property="name"/>
+          <checkbox id="isActiveField" property="isActive"/>
+          <textArea id="descriptionField" height="9.5em" property="description"/>
+          <textArea id="criteriaField" height="9.5em" property="criteria"/>
+          <vbox>
+            <fileStorageUploadField dataContainer="badgeDc" property="image"
+                                    clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
+            <image id="numberField" height="100%" width="100%"
+                   maxWidth="10em"
+                   alternateText="msg://BadgeDetail.image.alt"
+                   dataContainer="badgeDc" property="image"/>
+          </vbox>
+        </formLayout>
       </vbox>
-      <textArea id="criteriaField" height="9.5em" property="criteria"/>
-      <checkbox id="isActiveField" property="isActive"/>
-    </formLayout>
-    <hbox id="detailActions">
+    </scroller>
+    <hbox id="detailActions" height="5%" width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">>
       <button id="saveAndCloseBtn" action="saveAction"/>
       <button id="closeBtn" action="closeAction"/>
     </hbox>

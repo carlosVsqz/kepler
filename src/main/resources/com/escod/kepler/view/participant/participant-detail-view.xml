@@ -24,16 +24,23 @@
     <action id="closeAction" type="detail_close"/>
   </actions>
   <layout>
-    <formLayout id="form" dataContainer="participantDc">
-      <datePicker id="dateField" property="date"/>
-      <entityPicker id="userField" property="user">
-        <actions>
-          <action id="entityLookup" type="entity_lookup"/>
-          <action id="entityClear" type="entity_clear"/>
-        </actions>
-      </entityPicker>
-    </formLayout>
-    <hbox id="detailActions">
+    <scroller height="95%" width="100%" scrollBarsDirection="BOTH">
+      <vbox>
+        <formLayout id="form" dataContainer="participantDc">
+          <datePicker id="dateField" property="date"/>
+          <entityPicker id="userField" property="user">
+            <actions>
+              <action id="entityLookup" type="entity_lookup"/>
+              <action id="entityClear" type="entity_clear"/>
+            </actions>
+          </entityPicker>
+        </formLayout>
+      </vbox>
+    </scroller>
+    <hbox id="detailActions" height="5%" width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">
       <button id="saveAndCloseBtn" action="saveAction"/>
       <button id="closeBtn" action="closeAction"/>
     </hbox>

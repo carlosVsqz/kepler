@@ -41,46 +41,54 @@
     <action id="closeAction" type="detail_close"/>
   </actions>
   <layout>
-    <formLayout id="form" dataContainer="activityDc">
-      <textField id="titleField" property="title"/>
-      <!--      <textField id="activityLogoField" property="activityLogo"/>-->
-      <checkbox id="isActiveField" property="isActive"/>
-      <textArea id="descriptionField" height="9.5em" property="description"/>
-      <textArea id="rulesField" height="9.5em" property="rules"/>
-      <textArea id="instructionsField" height="9.5em" property="instructions"/>
-      <datePicker id="startDateField" property="startDate"/>
-      <datePicker id="endDateField" property="endDate"/>
-      <textField id="statusField" property="status"/>
-      <multiSelectComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"
-                           metaClass="CategoryActivity" label="Categorias"/>
-<!--      <entityComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"-->
-<!--                      metaClass="CategoryActivity">-->
-<!--        <actions>-->
-<!--          <action id="entityClear" type="entity_clear"/>-->
-<!--&lt;!&ndash;          <action id="entityLookup" type="entity_lookup"/>&ndash;&gt;-->
-<!--          <action id="entityOpen" type="entity_open"/>-->
-<!--&lt;!&ndash;          <action id="entityOpenComposition" type="entity_openComposition"/>&ndash;&gt;-->
-<!--&lt;!&ndash;          <action id="valueClear" type="value_clear"/>&ndash;&gt;-->
-<!--        </actions>-->
-<!--      </entityComboBox>-->
-      <multiSelectComboBoxPicker id="activityDetailsComboBox" itemsContainer="activityDetailsDc"
-                           metaClass="ActivityDetail" label="Actividades">
-        <actions>
-          <action id="entity_lookup" type="entity_lookup"/>
-          <action id="entity_clear" type="entity_clear"/>
-        </actions>
-      </multiSelectComboBoxPicker>
-
+    <scroller height="95%" scrollBarsDirection="BOTH">
       <vbox>
-        <fileStorageUploadField dataContainer="activityDc" property="activityLogo"
-                                clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
-        <image id="numberField" height="100%" width="100%"
-               alternateText="msg://ActivityDetail.image.alt"
-               dataContainer="activityDc" property="activityLogo"/>
+        <formLayout id="form" dataContainer="activityDc">
+          <textField id="titleField" property="title"/>
+          <!--      <textField id="activityLogoField" property="activityLogo"/>-->
+          <checkbox id="isActiveField" property="isActive"/>
+          <textArea id="descriptionField" height="9.5em" property="description"/>
+          <textArea id="rulesField" height="9.5em" property="rules"/>
+          <textArea id="instructionsField" height="9.5em" property="instructions"/>
+          <datePicker id="startDateField" property="startDate"/>
+          <datePicker id="endDateField" property="endDate"/>
+          <textField id="statusField" property="status"/>
+          <multiSelectComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"
+                               metaClass="CategoryActivity" label="Categorias"/>
+          <!--      <entityComboBox id="categoryActivitiesComboBox" itemsContainer="categoryActivitiesDc"-->
+          <!--                      metaClass="CategoryActivity">-->
+          <!--        <actions>-->
+          <!--          <action id="entityClear" type="entity_clear"/>-->
+          <!--&lt;!&ndash;          <action id="entityLookup" type="entity_lookup"/>&ndash;&gt;-->
+          <!--          <action id="entityOpen" type="entity_open"/>-->
+          <!--&lt;!&ndash;          <action id="entityOpenComposition" type="entity_openComposition"/>&ndash;&gt;-->
+          <!--&lt;!&ndash;          <action id="valueClear" type="value_clear"/>&ndash;&gt;-->
+          <!--        </actions>-->
+          <!--      </entityComboBox>-->
+          <multiSelectComboBoxPicker id="activityDetailsComboBox" itemsContainer="activityDetailsDc"
+                                     metaClass="ActivityDetail" label="Actividades">
+            <actions>
+              <action id="entity_lookup" type="entity_lookup"/>
+              <action id="entity_clear" type="entity_clear"/>
+            </actions>
+          </multiSelectComboBoxPicker>
+
+          <vbox>
+            <fileStorageUploadField dataContainer="activityDc" property="activityLogo"
+                                    clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
+            <image id="numberField" height="100%" width="100%"
+                   maxWidth="10em"
+                   alternateText="msg://ActivityDetail.image.alt"
+                   dataContainer="activityDc" property="activityLogo"/>
+          </vbox>
+        </formLayout>
       </vbox>
-    </formLayout>
-    <hbox id="detailActions">
-      <button id="saveAndCloseBtn" action="saveAction"/>
+    </scroller>
+    <hbox id="detailActions" height="5%" width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">
+      <button id="saveAndCloseBtn" action="saveAction" />
       <button id="closeBtn" action="closeAction"/>
     </hbox>
   </layout>
