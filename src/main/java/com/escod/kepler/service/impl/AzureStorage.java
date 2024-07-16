@@ -15,11 +15,13 @@ import io.jmix.core.common.util.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Component
@@ -30,9 +32,13 @@ public class AzureStorage implements StorageKeplerService {
   private AzureFileStorageProperties properties;
 
   private final AtomicReference<BlobContainerClient> clientReference = new AtomicReference<>();
+  private static final ConcurrentHashMap<FileRef, CachedSasUrl> cache = new ConcurrentHashMap<>();
 
   private String connectionString;
   private String containerName;
+
+  @Value("${app.kepler.max-age.azure.images}")
+  private int maxTimeAge;
 
   @EventListener
   public void initBlobContainerClient(final ApplicationStartedEvent event) {
@@ -73,17 +79,39 @@ public class AzureStorage implements StorageKeplerService {
     if (fileRef == null) return null;
 
     try {
-      OffsetDateTime expirationTime = OffsetDateTime.now().plusHours(1);
+
+      OffsetDateTime now = OffsetDateTime.now();
+
+      CachedSasUrl cachedSasUrl = cache.get(fileRef);
+      if (cachedSasUrl != null && cachedSasUrl.expirationTime.isAfter(now)) {
+        return cachedSasUrl.url;
+      }
+
+      OffsetDateTime expirationTime = now.plusHours(maxTimeAge);
       BlobServiceSasSignatureValues sasValues = new BlobServiceSasSignatureValues(expirationTime, BlobSasPermission.parse("r"));
 
       BlobClient blobClient = clientReference.get().getBlobClient(fileRef.getPath());
 
       var url = blobClient.getBlobUrl();
       var token = blobClient.generateSas(sasValues);
-      return url + "?" + token;
+      String fullUrl = url + "?" + token;
+
+      cache.put(fileRef, new CachedSasUrl(fullUrl, expirationTime));
+
+      return fullUrl;
     } catch (Exception e) {
       log.error(e.getMessage());
       return null;
+    }
+  }
+
+  private static class CachedSasUrl {
+    String url;
+    OffsetDateTime expirationTime;
+
+    CachedSasUrl(String url, OffsetDateTime expirationTime) {
+      this.url = url;
+      this.expirationTime = expirationTime;
     }
   }
 }
