@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        DOCKER_ENV = sh(script: 'minikube docker-env', returnStdout: true).trim()
     }
     stages {
         stage('Checkout') {
