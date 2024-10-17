@@ -11,10 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/participants")
@@ -25,6 +22,20 @@ public class CreateParticipant {
 
   @Autowired
   private PasswordEncoder passwordEncoder;
+
+  @GetMapping("findUsername")
+  public ResponseEntity<Boolean> getParticipants(@RequestParam String username) {
+
+    Boolean exist = Boolean.TRUE;
+    try {
+      validateUserExist(username);
+      exist = Boolean.FALSE;
+    } catch (CreateUserException exception) {
+      exist = Boolean.TRUE;
+    }
+
+    return ResponseEntity.ok(exist);
+  }
 
   @PostMapping("/create")
   public ResponseEntity<ResponseParticipant> createParticipant(@RequestBody @Valid final CreateParticipantRequest createParticipantRequest)

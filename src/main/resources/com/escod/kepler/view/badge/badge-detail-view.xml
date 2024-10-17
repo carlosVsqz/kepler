@@ -18,8 +18,8 @@
   </actions>
   <layout>
     <scroller height="95%" scrollBarsDirection="BOTH">
-      <vbox>
-        <formLayout id="form" dataContainer="badgeDc">
+      <hbox colspan="12" maxWidth="100%">
+        <formLayout id="form" dataContainer="badgeDc" colspan="6">
           <textField id="nameField" property="name"/>
           <checkbox id="isActiveField" property="isActive"/>
           <textArea id="descriptionField" height="9.5em" property="description"/>
@@ -33,7 +33,12 @@
                    dataContainer="badgeDc" property="image"/>
           </vbox>
         </formLayout>
-      </vbox>
+        <vbox colspan="6">
+          <formLayout dataContainer="badgeDc">
+            <textField id="nameField2" property="name"/>
+          </formLayout>
+        </vbox>
+      </hbox>
     </scroller>
     <hbox id="detailActions" height="5%" width="100%"
           maxWidth="100%"
