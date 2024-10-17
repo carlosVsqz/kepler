@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker build -f ./docker/basic-initialization/Dockerfile -t kepler:latest .
+                    eval \$(minikube -p minikube docker-env) && docker build -f ./docker/basic-initialization/Dockerfile -t kepler:latest .
                     """
                 }
             }
