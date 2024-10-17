@@ -7,16 +7,6 @@ pipeline {
             }
         }
 
-        stage('Setup Docker Environment') {
-            steps {
-                script {
-                    def dockerEnv = sh(script: 'minikube docker-env', returnStdout: true).trim()
-                    echo "Docker environment: ${dockerEnv}"
-                    sh "eval ${dockerEnv}"
-                }
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
