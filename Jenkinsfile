@@ -28,7 +28,7 @@ pipeline {
                     sh "docker stop kepler || true"
                     sh "docker rm kepler || true"
                     sh """
-                        docker run -d --restart=always --name kepler -p 4000:8080 ${DOCKER_IMAGE}
+                        docker run -d --restart=always --name kepler -p 4000:8080 --env-file /opt/kepler/.env ${DOCKER_IMAGE}
                     """
                 }
             }
