@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_IMAGE = 'kepler:latest'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,17 +15,21 @@ pipeline {
             steps {
                 script {
                     sh """
-                    eval \$(minikube -p minikube docker-env) && docker build -f ./docker/basic-initialization/Dockerfile -t kepler:latest .
+                    docker build -f ./docker/basic-initialization/Dockerfile -t ${DOCKER_IMAGE} .
                     """
                 }
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'kubectl apply -f ./k8s/deployment.yaml'
-                    sh 'kubectl apply -f ./k8s/service.yaml'
+                    def myEnvVar = credentials('KEPLER_-_')
+                    sh "docker stop kepler || true"
+                    sh "docker rm kepler || true"
+                    sh """
+                        docker run -d --restart=always --name kepler -p 4000:8080 ${DOCKER_IMAGE}
+                    """
                 }
             }
         }
