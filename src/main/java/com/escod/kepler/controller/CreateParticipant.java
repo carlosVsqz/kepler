@@ -26,7 +26,7 @@ public class CreateParticipant {
   @GetMapping("findUsername")
   public ResponseEntity<Boolean> getParticipants(@RequestParam String username) {
 
-    Boolean exist = Boolean.TRUE;
+    Boolean exist;
     try {
       validateUserExist(username);
       exist = Boolean.FALSE;
@@ -76,7 +76,6 @@ public class CreateParticipant {
 
   private ResponseParticipant getResponse(User newuser, Participant newparticipant) {
     String username = newuser.getUsername();
-    String password = newuser.getPassword();
     String email = newuser.getEmail();
     String firstname = newuser.getFirstName();
     String lastname = newuser.getLastName();
