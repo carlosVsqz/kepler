@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://postCategoryDetailView.title"
+      focusComponent="form">
+  <data>
+    <instance id="postCategoryDc"
+              class="com.escod.kepler.entity.blog.PostCategory">
+      <fetchPlan extends="_base"/>
+      <loader/>
+    </instance>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+  </facets>
+  <actions>
+    <action id="saveAction"
+            type="detail_saveClose"/>
+    <action id="closeAction"
+            type="detail_close"/>
+  </actions>
+  <layout>
+    <scroller height="95%"
+              scrollBarsDirection="BOTH">
+      <hbox maxWidth="100%">
+        <formLayout id="form"
+                    dataContainer="postCategoryDc">
+          <textField id="nameField"
+                     property="name"/>
+          <textArea id="descriptionField"
+                     property="description"/>
+          <checkbox id="activeField"
+                    property="active"/>
+        </formLayout>
+      </hbox>
+    </scroller>
+    <hbox id="detailActions"
+          height="5%"
+          width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">>
+      <button id="saveAndCloseBtn"
+              action="saveAction"/>
+      <button id="closeBtn"
+              action="closeAction"/>
+    </hbox>
+  </layout>
+</view>

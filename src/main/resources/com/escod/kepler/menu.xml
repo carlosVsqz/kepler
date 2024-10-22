@@ -10,6 +10,13 @@
     <item view="Activity.list" title="msg://com.escod.kepler.view.activity/activityListView.title"/>
     <item view="ActivityDetail.list" title="msg://com.escod.kepler.view.activitydetail/activityDetailListView.title"/>
   </menu>
+  <menu id="blog" title="msg://com.escod.kepler/menu.blog.title" opened="true">
+    <item view="Post.list" title="msg://com.escod.kepler.view.activity/PostListView.title"/>
+    <item view="PostCategory.list"
+          title="msg://com.escod.kepler.view.blog.post.postcategory/postCategoryListView.title"/>
+    <item view="PostTag.list"
+          title="msg://com.escod.kepler.view.blog.post.posttag/postTagListView.title"/>
+  </menu>
   <menu id="application" title="msg://com.escod.kepler/menu.application.title" opened="true">
   </menu>
 

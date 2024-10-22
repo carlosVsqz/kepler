@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://postListView.title"
+      focusComponent="postsDataGrid">
+  <data>
+    <collection id="postsDc"
+                class="com.escod.kepler.entity.blog.Post">
+      <fetchPlan extends="_base">
+        <property name="category"
+                  fetchPlan="_base"/>
+        <property name="tags"
+                  fetchPlan="_base"/>
+      </fetchPlan>
+      <loader id="postsDl"
+              readOnly="true">
+        <query>
+          <![CDATA[select e from Post e]]>
+        </query>
+      </loader>
+    </collection>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+    <urlQueryParameters>
+      <genericFilter component="genericFilter"/>
+      <pagination component="pagination"/>
+    </urlQueryParameters>
+  </facets>
+  <actions>
+    <action id="selectAction"
+            type="lookup_select"/>
+    <action id="discardAction"
+            type="lookup_discard"/>
+  </actions>
+  <layout>
+    <genericFilter id="genericFilter"
+                   dataLoader="postsDl">
+      <properties include=".*"/>
+    </genericFilter>
+    <hbox id="buttonsPanel"
+          classNames="buttons-panel">
+      <button id="createBtn"
+              action="postsDataGrid.create"/>
+      <button id="editBtn"
+              action="postsDataGrid.edit"/>
+      <button id="refreshBtn"
+              action="postsDataGrid.refresh"/>
+      <button id="removeBtn"
+              action="postsDataGrid.remove"/>
+      <simplePagination id="pagination"
+                        dataLoader="postsDl"/>
+    </hbox>
+    <dataGrid id="postsDataGrid"
+              width="100%"
+              minHeight="20em"
+              dataContainer="postsDc"
+              columnReorderingAllowed="true"
+              selectionMode="MULTI">
+      <actions>
+        <action id="create"
+                type="list_create"/>
+        <action id="edit"
+                type="list_edit"/>
+        <action id="refresh"
+                type="list_refresh"/>
+        <action id="remove"
+                type="list_remove"/>
+      </actions>
+      <columns resizable="true">
+        <column property="name"/>
+        <column property="title"/>
+<!--        <column property="image"/>-->
+<!--        <column property="htmlContent"/>-->
+        <column property="category.name"
+                header="msg://com.escod.kepler.entity.activity/BlogCategory.name"/>
+      </columns>
+    </dataGrid>
+    <hbox id="lookupActions"
+          visible="false">
+      <button id="selectBtn"
+              action="selectAction"/>
+      <button id="discardBtn"
+              action="discardAction"/>
+    </hbox>
+  </layout>
+</view>

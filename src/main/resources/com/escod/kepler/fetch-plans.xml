@@ -7,4 +7,14 @@
     </property>
     <property name="details" fetchPlan="_base" fetch="AUTO"/>
   </fetchPlan>
+
+  <fetchPlan class="com.escod.kepler.entity.blog.Post"
+             extends="_base" entity="Post"
+             name="post-details">
+    <property name="tags" fetchPlan="_base" fetch="AUTO"/>
+    <property name="relatedPosts" fetchPlan="_base" fetch="AUTO"/>
+    <property name="category" fetchPlan="_base" fetch="AUTO">
+      <property name="id" fetch="AUTO"/>
+    </property>
+  </fetchPlan>
 </fetchPlans>

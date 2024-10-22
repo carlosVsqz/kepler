@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://postTagDetailView.title"
+      focusComponent="form">
+  <data>
+    <instance id="postTagDc"
+              class="com.escod.kepler.entity.blog.PostTag">
+      <fetchPlan extends="_base"/>
+      <loader/>
+    </instance>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+  </facets>
+  <actions>
+    <action id="saveAction"
+            type="detail_saveClose"/>
+    <action id="closeAction"
+            type="detail_close"/>
+  </actions>
+<!--  <layout>-->
+<!--    <formLayout id="form"-->
+<!--                dataContainer="postTagDc">-->
+<!--    </formLayout>-->
+<!--    <hbox id="detailActions">-->
+<!--      <button id="saveAndCloseBtn"-->
+<!--              action="saveAction"/>-->
+<!--      <button id="closeBtn"-->
+<!--              action="closeAction"/>-->
+<!--    </hbox>-->
+<!--  </layout>-->
+  <layout>
+    <scroller height="95%"
+              scrollBarsDirection="BOTH">
+      <hbox maxWidth="100%" width="100%">
+        <formLayout id="form" dataContainer="postTagDc" width="100%">
+          <textField id="nameField" property="name"/>
+          <textField id="tagField" property="tag"/>
+        </formLayout>
+      </hbox>
+    </scroller>
+    <hbox id="detailActions"
+          height="5%"
+          width="100%"
+          maxWidth="100%"
+          alignItems="CENTER"
+          justifyContent="END">>
+      <button id="saveAndCloseBtn"
+              action="saveAction"/>
+      <button id="closeBtn"
+              action="closeAction"/>
+    </hbox>
+  </layout>
+</view>

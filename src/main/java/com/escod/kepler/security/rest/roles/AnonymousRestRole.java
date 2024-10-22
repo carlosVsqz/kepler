@@ -2,6 +2,9 @@ package com.escod.kepler.security.rest.roles;
 
 import com.escod.kepler.entity.User;
 import com.escod.kepler.entity.activity.*;
+import com.escod.kepler.entity.blog.Post;
+import com.escod.kepler.entity.blog.PostCategory;
+import com.escod.kepler.entity.blog.PostTag;
 import io.jmix.security.model.EntityAttributePolicyAction;
 import io.jmix.security.model.EntityPolicyAction;
 import io.jmix.security.role.annotation.EntityAttributePolicy;
@@ -58,4 +61,23 @@ public interface AnonymousRestRole {
 
   @EntityPolicy(entityClass = RoleAssignmentEntity.class, actions = {EntityPolicyAction.CREATE})
   void policyActionCreate();
+
+  //  blog read permissions
+  @EntityAttributePolicy(entityClass = Post.class,
+      attributes = "*",
+      action = EntityAttributePolicyAction.VIEW)
+  @EntityPolicy(entityClass = Post.class, actions = {EntityPolicyAction.READ})
+  void getPosts();
+
+  @EntityAttributePolicy(entityClass = PostCategory.class,
+      attributes = "*",
+      action = EntityAttributePolicyAction.VIEW)
+  @EntityPolicy(entityClass = PostCategory.class, actions = {EntityPolicyAction.READ})
+  void getPostCategories();
+
+  @EntityAttributePolicy(entityClass = PostTag.class,
+      attributes = "*",
+      action = EntityAttributePolicyAction.VIEW)
+  @EntityPolicy(entityClass = PostTag.class, actions = {EntityPolicyAction.READ})
+  void getPostTags();
 }

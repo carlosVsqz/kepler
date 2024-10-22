@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://postTagListView.title"
+      focusComponent="postTagsDataGrid">
+  <data>
+    <collection id="postTagsDc"
+                class="com.escod.kepler.entity.blog.PostTag">
+      <fetchPlan extends="_base"/>
+      <loader id="postTagsDl"
+              readOnly="true">
+        <query>
+          <![CDATA[select e from PostTag e]]>
+        </query>
+      </loader>
+    </collection>
+  </data>
+  <facets>
+    <dataLoadCoordinator auto="true"/>
+    <urlQueryParameters>
+      <genericFilter component="genericFilter"/>
+      <pagination component="pagination"/>
+    </urlQueryParameters>
+  </facets>
+  <actions>
+    <action id="selectAction"
+            type="lookup_select"/>
+    <action id="discardAction"
+            type="lookup_discard"/>
+  </actions>
+  <layout>
+    <genericFilter id="genericFilter"
+                   dataLoader="postTagsDl">
+      <properties include=".*"/>
+    </genericFilter>
+    <hbox id="buttonsPanel"
+          classNames="buttons-panel">
+      <button id="createBtn"
+              action="postTagsDataGrid.create"/>
+      <button id="editBtn"
+              action="postTagsDataGrid.edit"/>
+      <button id="removeBtn"
+              action="postTagsDataGrid.remove"/>
+      <simplePagination id="pagination"
+                        dataLoader="postTagsDl"/>
+    </hbox>
+    <dataGrid id="postTagsDataGrid"
+              width="100%"
+              minHeight="20em"
+              dataContainer="postTagsDc"
+              columnReorderingAllowed="true">
+      <actions>
+        <action id="create"
+                type="list_create"/>
+        <action id="edit"
+                type="list_edit"/>
+        <action id="remove"
+                type="list_remove"/>
+      </actions>
+      <columns resizable="true">
+        <column property="name"/>
+        <column property="tag"/>
+      </columns>
+    </dataGrid>
+    <hbox id="lookupActions"
+          visible="false">
+      <button id="selectBtn"
+              action="selectAction"/>
+      <button id="discardBtn"
+              action="discardAction"/>
+    </hbox>
+  </layout>
+</view>
