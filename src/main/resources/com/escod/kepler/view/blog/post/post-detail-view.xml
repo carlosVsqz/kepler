@@ -39,60 +39,58 @@
 
   <layout>
     <scroller height="95%" width="100%" scrollBarsDirection="BOTH">
-      <tabSheet width="100%">
+      <tabSheet id="tabSheet" width="100%">
         <tab id="tab1" label="msg://Post.tab1.label">
-          <split width="100%" height="100%" themeNames="splitter-spacing" splitterPosition="45">
-            <formLayout id="form" dataContainer="postDc" width="100%">
-              <formItem colspan="2">
-                <textField id="nameField" property="name"/>
-              </formItem>
-              <formItem colspan="2">
-                <textField id="titleField" property="title"/>
-              </formItem>
-              <formItem colspan="2">
-                <entityPicker id="categoryField"
-                              property="category">
-                  <actions>
-                    <action id="entityLookup"
-                            type="entity_lookup"/>
-                    <action id="entityClear"
-                            type="entity_clear"/>
-                  </actions>
-                </entityPicker>
-              </formItem>
-              <formItem colspan="2">
-                <multiSelectComboBoxPicker property="tags" dataContainer="postDc" itemsContainer="postTagsDc" >
-                  <actions>
-                    <action id="entityLookup"
-                            type="entity_lookup"/>
-                    <action id="entityClear"
-                            type="entity_clear"/>
-                  </actions>
-                </multiSelectComboBoxPicker>
-              </formItem>
-              <vbox width="100%">
-                <fileStorageUploadField dataContainer="postDc"
-                                        property="image"
-                                        clearButtonVisible="true"
-                                        fileNameVisible="true"
-                                        acceptedFileTypes=".png"/>
-                <image id="numberField"
-                       height="100%"
-                       width="100%"
-                       maxWidth="10em"
-                       alternateText="msg://Post.image.alt"
-                       dataContainer="postDc"
-                       property="image"/>
-              </vbox>
-              <formItem colspan="2">
-                <richTextEditor id="htmlContentField" property="htmlContent"/>
-              </formItem>
-            </formLayout>
-            <vbox>
-              <h3 text="msg://com.escod.kepler.entity.activity/BlogContent.header"/>
-              <vbox id="content" classNames="bordered"/>
+          <formLayout id="form" dataContainer="postDc" width="100%">
+
+            <textField id="nameField" property="name"/>
+
+            <textField id="titleField" property="title"/>
+
+            <entityPicker id="categoryField"
+                          property="category">
+              <actions>
+                <action id="entityLookup"
+                        type="entity_lookup"/>
+                <action id="entityClear"
+                        type="entity_clear"/>
+              </actions>
+            </entityPicker>
+
+            <multiSelectComboBoxPicker property="tags" dataContainer="postDc" itemsContainer="postTagsDc">
+              <actions>
+                <action id="entityLookup"
+                        type="entity_lookup"/>
+                <action id="entityClear"
+                        type="entity_clear"/>
+              </actions>
+            </multiSelectComboBoxPicker>
+
+            <vbox width="100%">
+              <fileStorageUploadField dataContainer="postDc"
+                                      property="image"
+                                      clearButtonVisible="true"
+                                      fileNameVisible="true"
+                                      acceptedFileTypes=".png"/>
+              <image id="numberField"
+                     height="100%"
+                     width="100%"
+                     maxWidth="10em"
+                     alternateText="msg://Post.image.alt"
+                     dataContainer="postDc"
+                     property="image"/>
             </vbox>
-          </split>
+            <formItem colspan="2">
+              <richTextEditor id="htmlContentField" property="htmlContent"/>
+            </formItem>
+          </formLayout>
+          <!--          </split>-->
+        </tab>
+        <tab id="tab3" label="msg://com.escod.kepler.entity.activity/BlogContent.header.tab">
+          <vbox>
+            <h3 text="msg://com.escod.kepler.entity.activity/BlogContent.header"/>
+            <vbox id="content" classNames="bordered"/>
+          </vbox>
         </tab>
         <tab id="tab2" label="msg://Post.tab2.label">
           <vbox>
