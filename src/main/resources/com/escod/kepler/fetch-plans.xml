@@ -21,5 +21,9 @@
   <fetchPlan class="com.escod.kepler.entity.blog.Post"
              extends="_instance_name" entity="Post" overwrite="true"
              name="posts-list-base">
+    <property name="id" fetch="AUTO"/>
+    <property name="title" fetch="AUTO"/>
+    <property name="image" fetch="AUTO"/>
+    <property name="createdDate" fetch="AUTO"/>
   </fetchPlan>
 </fetchPlans>
