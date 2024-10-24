@@ -51,6 +51,7 @@ public class Post {
   private FileRef image;
 
   @Lob
+  @Basic(fetch = FetchType.LAZY)
   @Column(name = "HTML_CONTENT")
   private String htmlContent;
 
