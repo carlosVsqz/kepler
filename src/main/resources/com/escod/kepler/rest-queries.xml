@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<queries xmlns="http://jmix.io/schema/rest/queries">
+  <query name="postByTag" entity="Post" fetchPlan="posts-list-base">
+    <jpql><![CDATA[select p from Post p join p.tags t where t.name like :tagName]]></jpql>
+    <params>
+      <param name="tagName" type="java.lang.String"/>
+    </params>
+  </query>
+</queries>
