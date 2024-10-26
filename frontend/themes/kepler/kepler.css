@@ -64,3 +64,8 @@ a.event-blue .fc-event-main {
 .login-image {
     padding-top: 300px;
 }
+
+.jmix-rich-text-editor-container {
+    overflow-y: auto !important;
+    max-height: 500px !important;
+}
