@@ -38,6 +38,7 @@ dependencies {
 //    runtimeOnly 'org.hsqldb:hsqldb'
 
     implementation 'org.postgresql:postgresql:42.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
