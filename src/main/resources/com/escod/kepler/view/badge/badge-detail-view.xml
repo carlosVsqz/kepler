@@ -26,7 +26,7 @@
           <textArea id="criteriaField" height="9.5em" property="criteria"/>
           <vbox>
             <fileStorageUploadField dataContainer="badgeDc" property="image"
-                                    clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
+                                    clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png, image/*"/>
             <image id="numberField" height="100%" width="100%"
                    maxWidth="10em"
                    alternateText="msg://BadgeDetail.image.alt"

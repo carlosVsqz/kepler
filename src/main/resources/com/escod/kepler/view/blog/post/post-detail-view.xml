@@ -71,7 +71,7 @@
                                       property="image"
                                       clearButtonVisible="true"
                                       fileNameVisible="true"
-                                      acceptedFileTypes=".png"/>
+                                      acceptedFileTypes=".png, image/*"/>
               <image id="numberField"
                      height="100%"
                      width="100%"

@@ -75,7 +75,7 @@
 
           <vbox>
             <fileStorageUploadField dataContainer="activityDc" property="activityLogo"
-                                    clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png"/>
+                                    clearButtonVisible="true" fileNameVisible="true" acceptedFileTypes=".png, image/*"/>
             <image id="numberField" height="100%" width="100%"
                    maxWidth="10em"
                    alternateText="msg://ActivityDetail.image.alt"
