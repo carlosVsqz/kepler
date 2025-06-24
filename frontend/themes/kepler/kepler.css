@@ -563,7 +563,7 @@ a.event-pink .fc-event-main {
     padding: 0.875rem 1.25rem !important;
     border-radius: var(--kepler-radius-lg) !important;
     background: rgba(134, 122, 235, 0.08) !important;
-    border-left: 4px solid var(--lumo-primary-color) !important;
+    /*border-left: 4px solid var(--lumo-primary-color) !important;*/
     color: var(--lumo-primary-color) !important;
     font-weight: 600 !important;
     cursor: pointer !important;
@@ -584,7 +584,7 @@ a.event-pink .fc-event-main {
 
 .jmix-menubar-item[opened] vaadin-details-summary {
     background: var(--lumo-primary-color-10pct) !important;
-    border-left: 4px solid var(--lumo-primary-color) !important;
+    /*border-left: 4px solid var(--lumo-primary-color) !important;*/
     box-shadow: var(--kepler-shadow-sm) !important;
 }
 
